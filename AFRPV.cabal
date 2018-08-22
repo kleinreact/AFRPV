@@ -2,7 +2,7 @@ name:                AFRPV
 version:             0.0.0.5
 synopsis:            Arrowized Functional Reactive Program Visualization
 description:         Arrowized Functional Reactive Program Visualization
-license:             MIT
+license:             BSD3
 license-file:        LICENSE
 author:              Felix Klein <klein@react.uni-saarland.de>
 maintainer:          Felix Klein <klein@react.uni-saarland.de>
@@ -11,6 +11,10 @@ stability:           alpha
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
+
+source-repository head
+  type:     git
+  location: https://github.com/kleinreact/AFRPV
 
 library
 
@@ -25,13 +29,34 @@ library
   exposed-modules:
     AFRPV.Yampa
     AFRPV.SF.Observer
-    AFRPV.SF.Yampa    
+    AFRPV.SF.Yampa
 
   other-modules:
     AFRPV.Render.Yampa
 
   hs-source-dirs:
     src
+
+  default-language:
+    Haskell2010
+
+executable legend
+
+  ghc-options:
+    -Wall -Wno-name-shadowing
+
+  main-is:
+    Main.hs
+
+  build-depends:
+        base >=4.7 && <4.11
+    , filepath >= 1.3.0.2
+    , directory >= 1.2
+    , process >= 1.2
+    , AFRPV
+
+  hs-source-dirs:
+    src/legend
 
   default-language:
     Haskell2010

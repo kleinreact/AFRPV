@@ -130,7 +130,7 @@ renderNetwork sf dir =
           , texCommand "begin" [] ["document"]
           , "\\tikzstyle{every picture}+=[inner sep=0pt]%"
           , texCommand "begin" [] ["tikzpicture"]
-          , toTikz $ net sf 
+          , toTikz $ net sf
           , texCommand "end" [] ["tikzpicture"]
           , texCommand "end" [] ["document"]
           ]
@@ -402,6 +402,7 @@ sizes = \case
         , input  = h - 0.3875 + 0.5 * input c0
         , output = h - 0.3875 + 0.5 * output c0
         }
+  Other (Pause _ _ ) -> error "NOT IMPLEMENTED: pause is not supported yet"
   Other (RSwitch _ _) -> error "NOT IMPLEMENTED: rSwitch is not supported yet"
   Other (KSwitch _ _ _) -> error "NOT IMPLEMENTED: kSwitch is not supported yet"
   Other _ -> error "NOT IMPLEMENTED: Switches using collections are not supported yet"
@@ -558,6 +559,7 @@ positions i = \case
         )
     in
       updUnary i x u
+  Other (Pause _ _) -> error "NOT IMPLEMENTED: pause is not supported yet"
   Other (RSwitch _ _) -> error "NOT IMPLEMENTED: rSwitch is not supported yet"
   Other (KSwitch _ _ _) -> error "NOT IMPLEMENTED: kSwitch is not supported yet"
   Other _ -> error "NOT IMPLEMENTED: Switches using collections are not supported yet"
@@ -1611,7 +1613,10 @@ build i = \case
         show (ax, bx - height cx / 2) ++ " -- " ++
         "(N" ++ show i ++ ");"
       ]
-  Other _ -> error "TODO"
+  Other (Pause _ _ ) -> error "NOT IMPLEMENTED: pause is not supported yet"
+  Other (RSwitch _ _) -> error "NOT IMPLEMENTED: rSwitch is not supported yet"
+  Other (KSwitch _ _ _) -> error "NOT IMPLEMENTED: kSwitch is not supported yet"
+  Other _ -> error "NOT IMPLEMENTED: Switches using collections are not supported yet"
 
 -----------------------------------------------------------------------------
 
